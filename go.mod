@@ -1,4 +1,4 @@
-module github.com/DarthXibalba/Image-Splitter
+module github.com/DarthXibalba/Rocinante
 
 go 1.21.3
 

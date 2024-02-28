@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/DarthXibalba/Image-Splitter/cmd"
+	"github.com/DarthXibalba/Rocinante/cmd"
 )
 
 func main() {

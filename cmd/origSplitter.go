@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/DarthXibalba/Image-Splitter/internal/imgproc"
+	"github.com/DarthXibalba/Rocinante/internal/imgproc"
 	"github.com/spf13/cobra"
 )
 
