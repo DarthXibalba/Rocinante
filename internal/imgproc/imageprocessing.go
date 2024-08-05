@@ -3,7 +3,10 @@ package imgproc
 import (
 	"fmt"
 	"image"
+	_ "image/gif"
+	_ "image/jpeg"
 	"image/png"
+	_ "image/png"
 	"os"
 	"path/filepath"
 
