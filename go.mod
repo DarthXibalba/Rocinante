@@ -3,6 +3,7 @@ module github.com/DarthXibalba/Rocinante
 go 1.21.3
 
 require (
+	github.com/disintegration/imaging v1.6.2
 	github.com/spf13/cobra v1.8.0
 	golang.org/x/image v0.14.0
 )

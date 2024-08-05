@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/disintegration/imaging"
 	"golang.org/x/image/draw"
 	"golang.org/x/image/webp"
 )
@@ -65,6 +66,13 @@ func ScaleImage(img image.Image, x, y int) (image.Image, error) {
 
 	fmt.Println("Image scaled with high quality to:", x, "x", y)
 	return dst, nil
+}
+
+// SharpenImage sharpens the features in the given image and returns the sharpened image
+func SharpenImage(img image.Image) (image.Image, error) {
+	// Sharpen the image using the imaging package
+	sharpenedImg := imaging.Sharpen(img, 1.0)
+	return sharpenedImg, nil
 }
 
 // Creates a horizontally mirrored version of the given image

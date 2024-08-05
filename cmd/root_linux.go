@@ -1,3 +1,5 @@
+//go:build linux
+
 package cmd
 
 import (
@@ -5,9 +7,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "splitter",
-	Short: "Splitter is a CLI tool for image splitting",
-	Long:  `A longer description...`,
+	Use:   "./Rocinante",
+	Short: "Rocinante is a CLI tool for use image manipulation.",
+	Long:  `Rocinante is a lightweight CLI tool use for a variety of image processing and image manipulation purposes.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
