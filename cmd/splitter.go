@@ -71,13 +71,6 @@ var splitAppendCmd = &cobra.Command{
 	},
 }
 
-func max(a int, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
 func init() {
 	splitAppendCmd.Flags().IntVarP(&flag_splitterImgHeight, "height", "H", -1, "Sets the height (in pixels) of the resultant image. Default value will result in the output image height being the input image height.")
 	splitAppendCmd.Flags().IntVarP(&flag_splitterImgWidth, "width", "W", -1, "Sets the width (in pixels) of the resultant image. Default value will result in the output image width being double of the input image width.")
