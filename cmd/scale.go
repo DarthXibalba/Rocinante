@@ -21,6 +21,7 @@ var scaleCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
+		cmd.Println("Loaded image:", imgPath)
 
 		// Scale
 		var newHeight, newWidth int
@@ -36,6 +37,7 @@ var scaleCmd = &cobra.Command{
 		if err != nil {
 			return fmt.Errorf("error scaling image: %s", err)
 		}
+		cmd.Println("Scaled image")
 
 		// Save
 		newImgPath := fileio.AddSuffixToFilename(imgPath, fmt.Sprintf("_scaled_%dx%d", newWidth, newHeight))
@@ -44,6 +46,7 @@ var scaleCmd = &cobra.Command{
 			return err
 		}
 
+		cmd.Println("Saved image to:", newImgPath)
 		return nil
 	},
 }

@@ -20,12 +20,14 @@ var sharpenCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
+		cmd.Println("Loaded image:", imgPath)
 
 		// Sharpen
 		sharpenedImg, err := imgproc.SharpenImage(img)
 		if err != nil {
 			return fmt.Errorf("error sharpening image: %s", err)
 		}
+		cmd.Println("Sharpened image")
 
 		// Save
 		newImgPath := fileio.AddSuffixToFilename(imgPath, "_sharpened")
@@ -34,6 +36,7 @@ var sharpenCmd = &cobra.Command{
 			return err
 		}
 
+		cmd.Println("Saved image to:", newImgPath)
 		return nil
 	},
 }

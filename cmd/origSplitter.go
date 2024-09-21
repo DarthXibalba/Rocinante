@@ -23,6 +23,7 @@ var origSplitAppendCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
+		cmd.Println("Loaded image:", imgPath)
 
 		// Create a mirror image for the backside
 		mirroredImg := imgproc.MirrorImage(img)
@@ -43,6 +44,8 @@ var origSplitAppendCmd = &cobra.Command{
 		draw.Draw(newImg, image.Rect(middle, 0, width+middle, height), mirroredImg, image.Point{}, draw.Src)
 		draw.Draw(newImg, image.Rect(width+middle, 0, newWidth, height), img, image.Point{}, draw.Src)
 
+		cmd.Println("OrigSplit image")
+
 		// Save images
 		ext := filepath.Ext(imgPath)
 		base := strings.TrimSuffix(imgPath, ext)
@@ -55,6 +58,7 @@ var origSplitAppendCmd = &cobra.Command{
 			return err
 		}
 
+		cmd.Println("Saved image to:", newImgPath)
 		return nil
 	},
 }

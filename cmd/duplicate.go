@@ -22,6 +22,7 @@ var duplicateAppendCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
+		cmd.Println("Loaded image:", imgPath)
 
 		// Calculate the bounds and the middle of the image
 		origBounds := img.Bounds()
@@ -49,6 +50,8 @@ var duplicateAppendCmd = &cobra.Command{
 		//draw.Draw(newImg, image.Rect(origMiddle, 0, origWidth+origMiddle, newHeight), mirroredImg, image.Point{}, draw.Src)
 		//draw.Draw(newImg, image.Rect(origWidth+origMiddle, 0, newWidth, newHeight), img, image.Point{}, draw.Src)
 
+		cmd.Println("Duplicated image")
+
 		// Save images
 		newImgPath := fileio.AddSuffixToFilename(imgPath, fmt.Sprintf("_cropped_%dx%d", newWidth, newHeight))
 		newImgPath = fileio.ChangeFilenameExtension(newImgPath, ".png")
@@ -57,6 +60,7 @@ var duplicateAppendCmd = &cobra.Command{
 			return err
 		}
 
+		cmd.Println("Saved image to:", newImgPath)
 		return nil
 	},
 }
