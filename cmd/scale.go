@@ -14,14 +14,13 @@ var scaleCmd = &cobra.Command{
 	Short: "Scale an image to new resolution",
 	Long:  "Scale an image using the highest quality (non-performance method)",
 	Args:  cobra.ExactArgs(3),
-	RunE: func(cmd *cobra.Command, args []string) error {
+	RunE: func(_ *cobra.Command, args []string) error {
 		// Load
 		imgPath := args[0]
 		img, err := imgproc.LoadImage(imgPath)
 		if err != nil {
 			return err
 		}
-		cmd.Println("Loaded image:", imgPath)
 
 		// Scale
 		var newHeight, newWidth int
@@ -37,7 +36,6 @@ var scaleCmd = &cobra.Command{
 		if err != nil {
 			return fmt.Errorf("error scaling image: %s", err)
 		}
-		cmd.Println("Scaled image")
 
 		// Save
 		newImgPath := fileio.AddSuffixToFilename(imgPath, fmt.Sprintf("_scaled_%dx%d", newWidth, newHeight))
@@ -46,7 +44,6 @@ var scaleCmd = &cobra.Command{
 			return err
 		}
 
-		cmd.Println("Saved image to:", newImgPath)
 		return nil
 	},
 }

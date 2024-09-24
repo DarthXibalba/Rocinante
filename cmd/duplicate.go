@@ -16,13 +16,12 @@ var duplicateAppendCmd = &cobra.Command{
 	Short: "duplicate an image",
 	Long:  `Duplicate an image into adjacent parts`,
 	Args:  cobra.ExactArgs(1),
-	RunE: func(cmd *cobra.Command, args []string) error {
+	RunE: func(_ *cobra.Command, args []string) error {
 		imgPath := args[0]
 		img, err := imgproc.LoadImage(imgPath)
 		if err != nil {
 			return err
 		}
-		cmd.Println("Loaded image:", imgPath)
 
 		// Calculate the bounds and the middle of the image
 		origBounds := img.Bounds()
@@ -50,8 +49,6 @@ var duplicateAppendCmd = &cobra.Command{
 		//draw.Draw(newImg, image.Rect(origMiddle, 0, origWidth+origMiddle, newHeight), mirroredImg, image.Point{}, draw.Src)
 		//draw.Draw(newImg, image.Rect(origWidth+origMiddle, 0, newWidth, newHeight), img, image.Point{}, draw.Src)
 
-		cmd.Println("Duplicated image")
-
 		// Save images
 		newImgPath := fileio.AddSuffixToFilename(imgPath, fmt.Sprintf("_cropped_%dx%d", newWidth, newHeight))
 		newImgPath = fileio.ChangeFilenameExtension(newImgPath, ".png")
@@ -60,7 +57,6 @@ var duplicateAppendCmd = &cobra.Command{
 			return err
 		}
 
-		cmd.Println("Saved image to:", newImgPath)
 		return nil
 	},
 }

@@ -13,21 +13,19 @@ var sharpenCmd = &cobra.Command{
 	Short: "Sharpen an image",
 	Long:  "Sharpen an image to improve enhance image features.",
 	Args:  cobra.ExactArgs(1),
-	RunE: func(cmd *cobra.Command, args []string) error {
+	RunE: func(_ *cobra.Command, args []string) error {
 		// Load
 		imgPath := args[0]
 		img, err := imgproc.LoadImage(imgPath)
 		if err != nil {
 			return err
 		}
-		cmd.Println("Loaded image:", imgPath)
 
 		// Sharpen
 		sharpenedImg, err := imgproc.SharpenImage(img)
 		if err != nil {
 			return fmt.Errorf("error sharpening image: %s", err)
 		}
-		cmd.Println("Sharpened image")
 
 		// Save
 		newImgPath := fileio.AddSuffixToFilename(imgPath, "_sharpened")
@@ -36,7 +34,6 @@ var sharpenCmd = &cobra.Command{
 			return err
 		}
 
-		cmd.Println("Saved image to:", newImgPath)
 		return nil
 	},
 }
