@@ -13,7 +13,7 @@ import (
 // splitAppendCmd represents the splitter command
 var duplicateAppendCmd = &cobra.Command{
 	Use:   "duplicate [imgPath]",
-	Short: "duplicate an image",
+	Short: "Duplicate an image",
 	Long:  `Duplicate an image into adjacent parts`,
 	Args:  cobra.ExactArgs(1),
 	RunE: func(_ *cobra.Command, args []string) error {
