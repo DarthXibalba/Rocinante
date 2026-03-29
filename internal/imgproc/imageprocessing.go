@@ -3,12 +3,11 @@ package imgproc
 import (
 	"fmt"
 	"image"
-	_ "image/gif"
-	_ "image/jpeg"
+	"image/jpeg"
 	"image/png"
-	_ "image/png"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/disintegration/imaging"
 	"golang.org/x/image/draw"
@@ -37,18 +36,34 @@ func LoadImage(filePath string) (image.Image, error) {
 	return img, nil
 }
 
-// saveImage saves the given image to a file in PNG format
+// SaveImage saves the given image using an encoder that matches the file extension.
 func SaveImage(img image.Image, filePath string) error {
 	fmt.Println("Saving image:", filePath)
+
 	outFile, err := os.Create(filePath)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to create output file: %w", err)
 	}
 	defer outFile.Close()
 
-	// Encode and save the image as a PNG
+	ext := strings.ToLower(filepath.Ext(filePath))
+
+	switch ext {
+	case ".png":
+		if err := png.Encode(outFile, img); err != nil {
+			return fmt.Errorf("failed to encode PNG: %w", err)
+		}
+	case ".jpg", ".jpeg":
+		opts := &jpeg.Options{Quality: 95}
+		if err := jpeg.Encode(outFile, img, opts); err != nil {
+			return fmt.Errorf("failed to encode JPEG: %w", err)
+		}
+	default:
+		return fmt.Errorf("unsupported output format %q; use .png, .jpg, or .jpeg", ext)
+	}
+
 	fmt.Println("Saved image!")
-	return png.Encode(outFile, img)
+	return nil
 }
 
 // ScaleImage scales the given image to the specified dimensions and returns the scaled image
